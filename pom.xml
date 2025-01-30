@@ -8,8 +8,8 @@
 		<version>3.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.life</groupId>
-	<artifactId>Life</artifactId>
+	<groupId>com.projects</groupId>
+	<artifactId>life</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Life</name>
 	<description></description>
