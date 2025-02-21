@@ -1,4 +1,4 @@
-package com.education.life.user.model;
+package com.education.life.profile.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

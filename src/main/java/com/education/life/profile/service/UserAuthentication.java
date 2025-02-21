@@ -1,9 +1,9 @@
-package com.education.life.user.service;
+package com.education.life.profile.service;
 
 import org.springframework.stereotype.Service;
 
-import com.education.life.user.model.User;
-import com.education.life.user.repository.UserRepository;
+import com.education.life.profile.model.User;
+import com.education.life.profile.repository.UserRepository;
 
 @Service
 public class UserAuthentication {
