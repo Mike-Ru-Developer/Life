@@ -1,120 +1,134 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подписка</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        :root {
-            --background-color: #f4f7f9;
-            --header-background: #2C7A7B;
-            --btn-background: #2C7A7B;
-            --btn-hover: #248484;
-            --alert-color: #DC3545;
-            --input-color: #2C7A7B;
-        }
-        body {
-            background-color: var(--background-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
-        .nav {
-            width: 100%;
-            background-color: var(--header-background); 
-            color: white;
-            display: flex;
-            padding: 10px; 
-            align-items: center; 
-            position: absolute; 
-            top: 0;
-            left: 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .nav-link {
-            color: white; 
-            cursor: pointer; 
-            text-decoration: none; 
-            margin-right: 20px; 
-            font-weight: bold; 
-        }
-        .nav-link:first-child {
-            margin-right: 0;
-        }
-        .nav-link:last-child {
-            margin-right: 0;
-        }
-        .profile-link {
-            margin-left: auto; 
-        }
-        .card {
-            width: 400px;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            margin-top: 80px; 
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--header-background);
-        }
-        .subscription-info {
-            text-align: center;
-            color: #333; 
-        }
-        .btn-primary {
-            background-color: var(--btn-background); 
-            border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: var(--btn-hover); 
-        }
-        .alert {
-            margin-top: 15px;
-            text-align: center;
-            color: var(--alert-color);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подписка на обсуждения</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+:root {
+	--background-color: #f4f7f9;
+	--header-background: #2C7A7B;
+	--btn-background: #2C7A7B;
+	--btn-hover: #248484;
+	--alert-color: #DC3545;
+	--input-color: #2C7A7B;
+}
+
+body {
+	background-color: var(--background-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	flex-direction: column;
+}
+
+.nav {
+	width: 100%;
+	background-color: var(--header-background);
+	color: white;
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
+	margin-right: 20px;
+	font-weight: bold;
+}
+
+.profile-link {
+	margin-left: auto;
+}
+
+.card {
+	width: 400px;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	background-color: #ffffff;
+	margin-top: 80px;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	color: var(--header-background);
+}
+
+.btn-primary {
+	background-color: var(--btn-background);
+	border: none;
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+	background-color: var(--btn-hover);
+}
+
+.user-info {
+	margin-bottom: 15px;
+	font-size: 16px;
+	color: #333;
+}
+</style>
 </head>
 <body>
-    <nav class="nav">
-        <a class="nav-link" onclick="goToUsers()">Пользователи</a>
-        <a class="nav-link" onclick="goToDiscussions()">Обсуждения</a>
-        <a class="nav-link profile-link" onclick="goToProfile()">Профиль</a>
-    </nav>
-    
-    <script>
-        function goToUsers() {
-            window.location.href = "http://localhost:8080/subscription/users";
-        }
+	<nav class="nav">
+		<a class="nav-link" onclick="goToUsers()">Пользователи</a> <a
+			class="nav-link" onclick="goToDiscussions()">Обсуждения</a> <a
+			class="nav-link profile-link" onclick="goToProfile()">Профиль</a>
+	</nav>
 
-        function goToDiscussions() {
-            const currentUrl = window.location.href; // Получаем текущий полный URL
-            const discussionsUrl = "http://localhost:8080/subscription/discussions"; // Полный URL для обсуждений
+	<div class="card">
+		<div class="user-info">
+			Ник: <span th:text="${userNickName}"></span>
+		</div>
+		<div class="user-info">
+			Имя: <span th:text="${userName}"></span>
+		</div>
+		<div class="user-info">
+			Фамилия: <span th:text="${userSurname}"></span>
+		</div>
 
-            // Проверяем, находимся ли мы уже на странице обсуждений
-            if (currentUrl !== discussionsUrl) {
-                window.location.href = discussionsUrl; // Если нет, переходим к обсуждениям
-            }
-        }
+	</div>
 
-        function goToProfile() {
-            window.location.href = "http://localhost:8080/subscription/profile"; // URL для профиля
-        }
-    </script>
+	<script>
+		function goToUsers() {
+			window.location.href = "http://localhost:8080/profile/subscription/users";
+		}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		function goToDiscussions() {
+			const currentUrl = window.location.href;
+			const discussionsUrl = "http://localhost:8080/profile/subscription/discussions";
+
+			if (currentUrl !== discussionsUrl) {
+				window.location.href = discussionsUrl;
+			}
+		}
+
+		function goToProfile() {
+			window.location.href = "http://localhost:8080/profile";
+		}
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

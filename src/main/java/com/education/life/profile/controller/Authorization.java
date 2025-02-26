@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.education.life.profile.model.User;
 import com.education.life.profile.service.UserAuthentication;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class Authorization {
 
@@ -23,10 +25,11 @@ public class Authorization {
     }
 
     @PostMapping("/authorization")
-    public String authorization(@RequestParam String nickname, @RequestParam String password) {
+    public String authorization(@RequestParam String nickname, @RequestParam String password, HttpSession session) {
 	User user = userAuthentication.authenticate(nickname, password);
 	if (user != null) {
-	    return "redirect:/subscription/discussions";
+	    session.setAttribute("currentUser", user);
+	    return "redirect:/profile/subscription/discussions";
 	}
 	return "authorization";
     }
