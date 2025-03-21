@@ -88,27 +88,22 @@ h2 {
 </head>
 <body>
 	<nav class="nav">
-		<a class="nav-link" onclick="goToUsers()">Пользователи</a> <a
-			class="nav-link" onclick="goToDiscussions()">Обсуждения</a> <a
-			class="nav-link profile-link" onclick="goToProfile()">Профиль</a>
+	<a class="nav-link"
+			onclick="goToArticles()">Статьи</a> 
+		<a class="nav-link" onclick="goToUsers()">Люди</a> <a class="nav-link"
+			onclick="goToDiscussions()">Обсуждения</a> <a class="nav-link profile-link"
+			onclick="goToProfile()">Профиль</a>
 	</nav>
 
-	<div class="card">
-		<div class="user-info">
-			Ник: <span th:text="${userNickName}"></span>
-		</div>
-		<div class="user-info">
-			Имя: <span th:text="${userName}"></span>
-		</div>
-		<div class="user-info">
-			Фамилия: <span th:text="${userSurname}"></span>
-		</div>
 
-	</div>
 
 	<script>
 		function goToUsers() {
 			window.location.href = "http://localhost:8080/profile/subscription/users";
+		}
+
+		function goToArticles() {
+			window.location.href = "http://localhost:8080/profile/articles";
 		}
 
 		function goToDiscussions() {
