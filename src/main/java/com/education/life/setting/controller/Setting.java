@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Setting {
-    @GetMapping("profile/setting")
+    @GetMapping("/profile/setting")
     public String showSettingForm(HttpSession httpSession, Model model) {
 	return "setting";
     }

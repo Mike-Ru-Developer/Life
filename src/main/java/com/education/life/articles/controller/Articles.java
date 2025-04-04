@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class Articles {
 
-    @GetMapping("profile/articles")
+    @GetMapping("/profile/articles")
     public String showArticlesForm(HttpSession session, Model model) {
 	return "articlesMain";
     }
