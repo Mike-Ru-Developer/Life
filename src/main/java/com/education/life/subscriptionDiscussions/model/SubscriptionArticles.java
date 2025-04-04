@@ -1,6 +1,8 @@
 package com.education.life.subscriptionDiscussions.model;
+
 import com.education.life.articles.model.ModelArticle;
 import com.education.life.profile.model.User;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
@@ -44,5 +46,10 @@ public class SubscriptionArticles {
 
     public void setArticle(ModelArticle article) {
 	this.article = article;
+    }
+
+    @Override
+    public String toString() {
+	return article.getTitle();
     }
 }

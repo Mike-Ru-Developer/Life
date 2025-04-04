@@ -41,4 +41,9 @@ public class ModelArticle {
 	this.content = content;
     }
 
+    @Override
+    public String toString() {
+	return title;
+    }
+
 }
