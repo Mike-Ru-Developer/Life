@@ -52,4 +52,5 @@ public class SubscriptionArticles {
     public String toString() {
 	return article.getTitle();
     }
+
 }

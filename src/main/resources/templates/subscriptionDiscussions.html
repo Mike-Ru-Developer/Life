@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Подписка на обсуждения</title>
+<title>Подписки на обсуждения</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -21,7 +20,7 @@ body {
 	background-color: var(--background-color);
 	display: flex;
 	justify-content: center;
-	align-items: center; /* Центрирование по вертикали */
+	align-items: center;
 	height: 100vh; /* Занимает всю высоту экрана */
 	margin: 0;
 }
@@ -33,7 +32,7 @@ body {
 	display: flex;
 	padding: 10px;
 	align-items: center;
-	position: absolute;
+	position: absolute; /* Оставляем навигацию фиксированной */
 	top: 0;
 	left: 0;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -52,34 +51,32 @@ body {
 }
 
 .card {
-	width: 600px; /* Увеличена ширина карточки */
+	width: 400px; /* Ширина карточки */
 	padding: 30px;
 	border-radius: 10px;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-	background-color: #ffffff;
+	background-color: #f0f0f0; /* Новый цвет фона карточки */
 }
 
 h2 {
-	text-align: center;
-	margin-bottom: 20px;
-	color: variables(--header-background);
+	text-align: center; /* Заголовок по центру */
+	margin-bottom: 20px; /* Отступ снизу заголовка */
+	color: var(--header-background); /* Цвет заголовка */
 }
 
-.subscription-list {
-	list-style-type: none; /* Убираем маркеры списка */
-	padding-left: 0; /* Убираем отступ слева */
+.user-info {
+	margin-bottom: 0; /* Убираем отступ между элементами списка подписок */
+	font-size: 16px; /* Размер шрифта для информации о пользователе */
+	color: #333; /* Цвет текста информации о пользователе */
 }
 
-.subscription-item {
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
-	/* Разделитель между элементами списка */
+.user-info p {
+	margin: 0; /* Убираем отступы у абзацев */
 }
 
 .nav-right {
 	margin-left: auto; /* Отодвигает элементы вправо */
-	display: flex;
-	align-items: center;
+	display: flex; /* Выравнивание элементов в правой части навигации */
 }
 </style>
 </head>
@@ -95,19 +92,19 @@ h2 {
 	</nav>
 
 	<div class="card">
-		<h2>Список подписок на обсуждения</h2>
+		<h2>Ваши подписки на обсуждения</h2>
 
-		<ul class="subscription-list" th:text="${subscriptionsUser}">
-			<li th:each="subscription : ${subscriptionsUser}"
-				class="subscription-item">Здесь вы можете отобразить нужные
-				поля из объекта SubscriptionArticles <span
-				th:text="${subscription.user.username}">Имя пользователя</span> -
-				Имя пользователя <span th:text="${subscription.article.title}">Название
-					обсуждения</span> Заголовок статьи
-			</li> Если нет подписок
-			<li th:hidden="${#lists.isEmpty(subscriptionsUser)}">У вас нет
-				активных подписок.</li>
-		</ul>
+		<div th:if="${subscriptionsUser != null}">
+			<div th:each="subscription : ${subscriptionsUser}" class="user-info">
+				<p th:text="${subscription.article.title}"></p>
+				<!-- Название статьи -->
+			</div>
+		</div>
+
+		<div th:if="${subscriptionsUser == null}">
+			<p>У вас нет подписок на обсуждения.</p>
+			<!-- Сообщение об отсутствии подписок -->
+		</div>
 
 	</div>
 
