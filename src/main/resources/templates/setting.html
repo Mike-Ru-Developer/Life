@@ -94,42 +94,44 @@ h2 {
 </head>
 <body>
 	<nav class="nav">
-		<a class="nav-link" onclick="goToArticles()">Статьи</a> <a
-			class="nav-link" onclick="goToUsers()">Люди</a> <a class="nav-link"
-			onclick="goToDiscussions()">Обсуждения</a>
+		<a class="nav-link" onclick="goToGeneralListArticles()">Все статьи</a>
+		<a class="nav-link" onclick="goToSubscriptionToPeople()">Подписки
+			на людей</a> <a class="nav-link" onclick="goToSubscriptionToArticles()">Подписки
+			на статьи</a>
 		<div class="nav-right">
-			<a class="nav-link" onclick="goToSetting()">Настройки</a>
-			<!-- Настройки перед Профилем -->
-			<a class="nav-link profile-link" onclick="goToProfile()">Профиль</a>
+			<a class="nav-link" onclick="goToSetting()">Настройки</a> <a
+				class="nav-link profile-link" onclick="goToProfile()">Профиль</a>
 		</div>
 	</nav>
 
+
 	<script>
-		function goToArticles() {
+		function goToSubscriptionToPeople() {
+			window.location.href = "http://localhost:8080/profile/subscription/people";
+		}
+
+		function goToGeneralListArticles() {
 			window.location.href = "http://localhost:8080/profile/articles";
 		}
 
-		function goToUsers() {
-			window.location.href = "http://localhost:8080/profile/subscription/users";
-		}
-
-		function goToDiscussions() {
+		function goToSubscriptionToArticles() {
 			const currentUrl = window.location.href;
-			const discussionsUrl = "http://localhost:8080/profile/subscription/discussions";
+			const discussionsUrl = "http://localhost:8080/profile/subscription/articles";
 
 			if (currentUrl !== discussionsUrl) {
 				window.location.href = discussionsUrl;
 			}
 		}
 
-		function goToProfile() {
-			window.location.href = "http://localhost:8080/profile";
-		}
-
 		function goToSetting() {
 			window.location.href = "http://localhost:8080/profile/setting";
 		}
+
+		function goToProfile() {
+			window.location.href = "http://localhost:8080/profile";
+		}
 	</script>
+
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
