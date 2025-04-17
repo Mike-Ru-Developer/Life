@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Профиль пользователя</title>
+<title>Подписки на статьи</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
@@ -22,9 +21,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 100vh; /* Занимает всю высоту экрана */
 	margin: 0;
-	flex-direction: column;
 }
 
 .nav {
@@ -34,7 +32,7 @@ body {
 	display: flex;
 	padding: 10px;
 	align-items: center;
-	position: absolute;
+	position: absolute; /* Оставляем навигацию фиксированной */
 	top: 0;
 	left: 0;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -54,12 +52,10 @@ body {
 
 .card {
 	width: 400px; /* Ширина карточки */
-	padding: 30px; /* Отступ внутри карточки */
-	border-radius: 10px; /* Закругление углов */
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Тень */
-	background-color: #f0f0f0 !important;
-	/* Новый цвет фона карточки с !important */
-	margin: 80px auto; /* Центрирование плашки */
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	background-color: #f0f0f0; /* Новый цвет фона карточки */
 }
 
 h2 {
@@ -68,29 +64,19 @@ h2 {
 	color: var(--header-background); /* Цвет заголовка */
 }
 
-.btn-primary {
-	background-color: var(--btn-background);
-	border: none;
-	width: auto;
-	padding: 10 px;
-	border-radius: 5 px;
-	transition: background-color .3 s;
-}
-
-.btn-primary:hover {
-	background-color: var(--btn-hover);
-}
-
 .user-info {
-	margin-bottom: 15 px;
-	font-size: 16 px;
-	color: #333;
+	margin-bottom: 0; /* Убираем отступ между элементами списка подписок */
+	font-size: 16px; /* Размер шрифта для информации о пользователе */
+	color: #333; /* Цвет текста информации о пользователе */
+}
+
+.user-info p {
+	margin: 0; /* Убираем отступы у абзацев */
 }
 
 .nav-right {
-	margin-left: auto;
-	display: flex;
-	align-items: center;
+	margin-left: auto; /* Отодвигает элементы вправо */
+	display: flex; /* Выравнивание элементов в правой части навигации */
 }
 </style>
 </head>
@@ -106,19 +92,21 @@ h2 {
 		</div>
 	</nav>
 
-	<div class="container">
-		<div class="card">
-			<h2>Ваши данные</h2>
-			<div class="user-info">
-				Ник: <span th:text="${userNickName}"></span>
-			</div>
-			<div class="user-info">
-				Имя: <span th:text="${userName}"></span>
-			</div>
-			<div class="user-info">
-				Фамилия: <span th:text="${userSurname}"></span>
+	<div class="card">
+		<h2>Ваши подписки на обсуждения</h2>
+
+		<div th:if="${subscriptionsUser != null}">
+			<div th:each="subscription : ${subscriptionsUser}" class="user-info">
+				<p th:text="${subscription.article.title}"></p>
+				<!-- Название статьи -->
 			</div>
 		</div>
+
+		<div th:if="${subscriptionsUser == null}">
+			<p>У вас нет подписок на обсуждения.</p>
+			<!-- Сообщение об отсутствии подписок -->
+		</div>
+
 	</div>
 
 	<script>
